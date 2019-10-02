@@ -4,6 +4,22 @@ using JLD; using Statistics;
 img = imread("el-capitan.png")
 imshow(img) # Answer to question 1Aa.
 
+"""
+extract(image_file)
+
+- Takes String image_file, displays the image, then extracts and
+  returns the R, G, and B channels.
+
+PARAMETERS:
+
+- name of image file (String)
+
+RETURNS:
+
+- R channel
+- G channel
+- B channel
+"""
 function extract(image_file) # Answer to question 1Ab.
     img = imread(image_file)
     imshow(img)
@@ -23,7 +39,7 @@ image2[:,:,1] = green1[:,:]
 image2[:,:,2] = blue1[:,:]
 image2[:,:,3] = red1[:,:]
 
-figure(2)
+figure(2) # Makes new figure.
 subplot(1,2,1)
 imshow(img)
 axis("off")
@@ -37,6 +53,26 @@ title("Image 2")
 using PyPlot; pygui(true);
 using JLD; using Statistics;
 
+"""
+shift_img(image_file, pixel_shift; channel=1)
+
+- Takes String image_file, Int pixel_shift, and optional Int
+  channel, then shifts the channel by pixel_shift pixels. In
+  order to do this, the function takes the top pixel_shift rows
+  and moves them to the bottom of the channel. If no channel
+  specification is given, defaults to channel 1 (red). Returns
+  shifted channel.
+
+PARAMETERS:
+
+- name of image file (String)
+- number of pixel rows to shift (Int)
+- (optional) channel to modify (Int), defaults to 1
+
+RETURNS:
+
+- shifted channel (Matrix)
+"""
 function shift_img(image_file, pixel_shift; channel=1)
     old = imread(image_file)
     target_rows = old[1:pixel_shift,:,channel]
@@ -47,13 +83,13 @@ end
 original = img[:,:,1]
 shifted = shift_img("el-capitan.png",180)
 
-figure(3)
+figure(3) # Makes new figure.
 subplot(1,2,1)
 imshow(original)
 axis("off")
-title("Original")
+title("Original Channel")
 subplot(1,2,2)
 imshow(shifted)
 axis("off")
-title("Shifted")
-# Shows side-by-side comparison of images. Answer to 1B.
+title("Shifted Channel")
+# Shows side-by-side comparison of image channels. Answer to 1B.
