@@ -1,5 +1,3 @@
-####
-
 using PyPlot; pygui(true);
 using JLD; using Statistics;
 
@@ -36,9 +34,26 @@ axis("off")
 title("Image 2")
 # Shows side-by-side comparison of images. Answer to 1Ae.
 
-####
-
 using PyPlot; pygui(true);
 using JLD; using Statistics;
 
-####
+function shift_img(image_file, pixel_shift; channel=1)
+    old = imread(image_file)
+    target_rows = old[1:pixel_shift,:,channel]
+    new = vcat(old[pixel_shift+1:end,:,channel], target_rows)
+    return new
+end
+
+original = img[:,:,1]
+shifted = shift_img("el-capitan.png",180)
+
+figure(3)
+subplot(1,2,1)
+imshow(original)
+axis("off")
+title("Original")
+subplot(1,2,2)
+imshow(shifted)
+axis("off")
+title("Shifted")
+# Shows side-by-side comparison of images. Answer to 1B.
