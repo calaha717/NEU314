@@ -1,5 +1,5 @@
 using PyPlot; pygui(true);
-using JLD; using Statistics;
+using JLD;
 
 img = imread("el-capitan.png")
 imshow(img) # Answer to question 1Aa.
@@ -16,9 +16,9 @@ PARAMETERS:
 
 RETURNS:
 
-- R channel
-- G channel
-- B channel
+- R channel (Matrix)
+- G channel (Matrix)
+- B channel (Matrix)
 """
 function extract(image_file) # Answer to question 1Ab.
     img = imread(image_file)
@@ -34,10 +34,13 @@ println("Reset with git reset --mixed")
 red1, green1, blue1 = extract("el-capitan.png")
 # Extracts and stores red, green, and blue channels of image 1.
 
-image2 = zeros(360, 640, 3)
+image2 = zeros(360, 640, 3) # Creates new "image"
 image2[:,:,1] = green1[:,:]
+# Fills red channel with extracted green channel.
 image2[:,:,2] = blue1[:,:]
+# Fills green channel with extracted blue channel.
 image2[:,:,3] = red1[:,:]
+# Fills blue channel with extracted red channel.
 
 figure(2) # Makes new figure.
 subplot(1,2,1)
@@ -74,14 +77,15 @@ RETURNS:
 - shifted channel (Matrix)
 """
 function shift_img(image_file, pixel_shift; channel=1)
-    old = imread(image_file)
+    old = imread(image_file) # Reads original image.
     target_rows = old[1:pixel_shift,:,channel]
     new = vcat(old[pixel_shift+1:end,:,channel], target_rows)
-    return new
+    return new # Returns shifted channel.
 end
 
 original = img[:,:,1]
 shifted = shift_img("el-capitan.png",180)
+# Shifts image's red channel by 180 pixels.
 
 figure(3) # Makes new figure.
 subplot(1,2,1)
