@@ -70,7 +70,7 @@ PARAMETERS:
 
 - name of image file (String)
 - number of pixel rows to shift (Int)
-- (optional) channel to modify (Int), defaults to 1
+- (optional) channel to be modified (Int), defaults to 1 (red)
 
 RETURNS:
 
