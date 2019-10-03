@@ -1,8 +1,15 @@
 using PyPlot; pygui(true);
 using JLD;
 
+#= Use  imread() to load it into Julia and imshow() to display it
+ in a figure. =#
 img = imread("el-capitan.png")
 imshow(img) # Answer to question 1Aa.
+
+#= Write a function that takes as input a string representing the
+   filename, and then loads the image file, displays it, and
+   extracts the red, blue, and green channels into separate
+   variables, and returns the content of those variables. =#
 
 """
 extract(image_file)
@@ -31,6 +38,12 @@ end
 
 println("Reset with git reset --mixed")
 
+#= Make a new 360x640x3 matrix; let’s call this image2. Set
+   image2[:,:,1] to be the G channel from the original image,
+   image2[:,:,2] to be the B channel from the original image,
+   and image2[:,:,3] to be the R channel from the original
+   image. =#
+
 red1, green1, blue1 = extract("el-capitan.png")
 # Extracts and stores red, green, and blue channels of image 1.
 
@@ -55,6 +68,11 @@ title("Image 2")
 
 using PyPlot; pygui(true);
 using JLD; using Statistics;
+
+#= Write a function that, for given an image, circularly moves
+   only one channel, the red channel (remember, this is the
+   first one) up some number of pixels, p, such that the top
+   p rows now become the bottom p rows. =#
 
 """
 shift_img(image_file, pixel_shift; channel=1)
@@ -86,6 +104,9 @@ end
 original = img[:,:,1]
 shifted = shift_img("el-capitan.png",180)
 # Shifts image's red channel by 180 pixels.
+
+#= Display both the original image channel and the result of
+   circularly moving the red channel up by 180 pixels. =#
 
 figure(3) # Makes new figure.
 subplot(1,2,1)
