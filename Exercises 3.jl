@@ -37,6 +37,7 @@ function extract(image_file) # Answer to question 1Ab.
 end
 
 println("Reset with git reset --mixed")
+# Prints "Reset with git reset --mixed" to the REPL.
 
 #= Make a new 360x640x3 matrix; let’s call this image2. Set
    image2[:,:,1] to be the G channel from the original image,
@@ -67,7 +68,7 @@ title("Image 2")
 # Shows side-by-side comparison of images. Answer to 1Ae.
 
 using PyPlot; pygui(true);
-using JLD; using Statistics;
+using JLD;
 
 #= Write a function that, for given an image, circularly moves
    only one channel, the red channel (remember, this is the
